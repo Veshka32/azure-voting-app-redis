@@ -19,5 +19,28 @@ pipeline {
                 """)
             }
         }
+        stage('Start test app'){
+            steps {
+                powershell(script: """
+                    docker-compose up -d
+                   
+                """)
+            }
+            post{
+                success{
+                    echo 'Started OK'
+                }
+                failure{
+                    echo 'Start failed'
+                }
+            }
+        }
+        stage('End test app'){
+            steps{
+                 powershell(script: """
+                    docker-compose down
+                """)
+            }
+        }
     }
 }
