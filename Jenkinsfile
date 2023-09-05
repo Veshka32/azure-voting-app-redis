@@ -39,6 +39,7 @@ pipeline {
             parallel{
                 stage('First check'){
                   steps {
+                      sleep(time: 10, unit: 'SECONDS')
                     echo "$WORKSPACE"
                   }  
                 }
