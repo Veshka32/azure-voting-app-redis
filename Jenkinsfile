@@ -35,12 +35,20 @@ pipeline {
                 }
             }
         }
-        stage('End test app'){
-            steps{
-                 powershell(script: """
-                    docker-compose down
-                """)
+        stage('Long tasks'){
+            parallerl{
+                stage('First check'){
+                  steps {
+                    echo "$WORKSPACE"
+                  }  
+                }
+                stage('Second check'){
+                  steps {
+                    echo "$STAGE_NAME"
+                  }  
+                }
             }
         }
+    
     }
 }
