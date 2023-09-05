@@ -36,7 +36,7 @@ pipeline {
             }
         }
         stage('Long tasks'){
-            parallerl{
+            parallel{
                 stage('First check'){
                   steps {
                     echo "$WORKSPACE"
